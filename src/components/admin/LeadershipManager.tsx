@@ -73,6 +73,14 @@ export default function LeadershipManager() {
 
   return (
     <div className="space-y-6">
+      <Card className="bg-accent/50 border-accent">
+        <CardContent className="p-4">
+          <p className="text-sm">
+            <strong>Note:</strong> "President" and "Adhyaksh" are the same position. Use "President" for English, and the translations will automatically show "Adhyaksh" in Hindi/Sindhi.
+          </p>
+        </CardContent>
+      </Card>
+
       <Card>
         <CardContent className="p-6">
           <h3 className="text-lg font-semibold mb-4">
@@ -125,8 +133,24 @@ export default function LeadershipManager() {
                   id="photo"
                   value={formData.photo}
                   onChange={(e) => setFormData(prev => ({ ...prev, photo: e.target.value }))}
-                  placeholder="https://..."
+                  placeholder="https://... (image URL)"
                 />
+                <p className="text-xs text-muted-foreground mt-1">
+                  Upload your image to a service like Imgur, ImgBB, or use a direct URL
+                </p>
+                {formData.photo && (
+                  <div className="mt-2 p-4 bg-muted rounded-lg">
+                    <p className="text-xs text-muted-foreground mb-2">Preview:</p>
+                    <img 
+                      src={formData.photo} 
+                      alt="Photo preview" 
+                      className="w-20 h-20 rounded-full object-cover"
+                      onError={(e) => {
+                        e.currentTarget.style.display = 'none'
+                      }}
+                    />
+                  </div>
+                )}
               </div>
               <div>
                 <Label htmlFor="order">Display Order</Label>
@@ -162,9 +186,20 @@ export default function LeadershipManager() {
               <Card key={leader.id}>
                 <CardContent className="p-4 flex items-center justify-between">
                   <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center font-semibold text-primary">
-                      {leader.name.split(' ').map(n => n[0]).join('').slice(0, 2)}
-                    </div>
+                    {leader.photo ? (
+                      <img 
+                        src={leader.photo} 
+                        alt={leader.name}
+                        className="w-12 h-12 rounded-full object-cover"
+                        onError={(e) => {
+                          e.currentTarget.style.display = 'none'
+                        }}
+                      />
+                    ) : (
+                      <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center font-semibold text-primary">
+                        {leader.name.split(' ').map(n => n[0]).join('').slice(0, 2)}
+                      </div>
+                    )}
                     <div>
                       <p className="font-semibold">{leader.name}</p>
                       <p className="text-sm text-muted-foreground">{leader.position}</p>

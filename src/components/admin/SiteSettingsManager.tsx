@@ -17,7 +17,8 @@ export default function SiteSettingsManager() {
     adminUsername: '',
     adminPassword: '',
     facebookUrl: '',
-    benevityUrl: ''
+    benevityUrl: '',
+    logoUrl: ''
   })
 
   useEffect(() => {
@@ -26,7 +27,8 @@ export default function SiteSettingsManager() {
         adminUsername: settings.adminUsername || '',
         adminPassword: settings.adminPassword || '',
         facebookUrl: settings.facebookUrl || '',
-        benevityUrl: settings.benevityUrl || ''
+        benevityUrl: settings.benevityUrl || '',
+        logoUrl: settings.logoUrl || ''
       })
     }
   }, [settings])
@@ -65,6 +67,32 @@ export default function SiteSettingsManager() {
                     required
                   />
                 </div>
+              </div>
+            </div>
+
+            <div className="space-y-4 pt-4 border-t">
+              <h4 className="font-medium text-sm text-muted-foreground">Branding</h4>
+              <div className="space-y-2">
+                <Label htmlFor="logoUrl">Logo URL</Label>
+                <Input
+                  id="logoUrl"
+                  value={formData.logoUrl}
+                  onChange={(e) => setFormData({ ...formData, logoUrl: e.target.value })}
+                  placeholder="https://... (image URL for your organization logo)"
+                />
+                {formData.logoUrl && (
+                  <div className="mt-2 p-4 bg-muted rounded-lg">
+                    <p className="text-sm text-muted-foreground mb-2">Preview:</p>
+                    <img 
+                      src={formData.logoUrl} 
+                      alt="Logo preview" 
+                      className="h-12 object-contain"
+                      onError={(e) => {
+                        e.currentTarget.style.display = 'none'
+                      }}
+                    />
+                  </div>
+                )}
               </div>
             </div>
 

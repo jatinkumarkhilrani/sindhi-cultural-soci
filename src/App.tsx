@@ -69,6 +69,7 @@ function App() {
         language={currentLanguage}
         onLanguageChange={setCurrentLanguage}
         facebookUrl={siteSettings?.facebookUrl}
+        logoUrl={siteSettings?.logoUrl}
       />
       <main>
         <Hero mission={orgInfo?.mission || ''} language={currentLanguage} />
@@ -80,7 +81,7 @@ function App() {
         <MediaGallery videos={videos || []} youtubeChannel={orgInfo?.youtubeChannel || ''} language={currentLanguage} />
         <Contact orgInfo={orgInfo!} language={currentLanguage} benevityUrl={siteSettings?.benevityUrl} />
       </main>
-      <Footer orgInfo={orgInfo!} language={currentLanguage} facebookUrl={siteSettings?.facebookUrl} />
+      <Footer orgInfo={orgInfo!} language={currentLanguage} facebookUrl={siteSettings?.facebookUrl} logoUrl={siteSettings?.logoUrl} />
       <AdminLogin 
         open={showAdminLogin} 
         onOpenChange={setShowAdminLogin}

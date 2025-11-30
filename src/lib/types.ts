@@ -63,4 +63,5 @@ export interface SiteSettings {
   adminPassword: string
   facebookUrl?: string
   benevityUrl?: string
+  logoUrl?: string
 }

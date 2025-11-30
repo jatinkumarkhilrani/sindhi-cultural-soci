@@ -7,9 +7,10 @@ interface FooterProps {
   orgInfo: OrganizationInfo
   language: Language
   facebookUrl?: string
+  logoUrl?: string
 }
 
-export default function Footer({ orgInfo, language, facebookUrl }: FooterProps) {
+export default function Footer({ orgInfo, language, facebookUrl, logoUrl }: FooterProps) {
   const t = useTranslation(language)
   
   return (
@@ -18,9 +19,17 @@ export default function Footer({ orgInfo, language, facebookUrl }: FooterProps) 
         <div className="grid md:grid-cols-3 gap-8 mb-8">
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 bg-secondary-foreground/10 rounded-full flex items-center justify-center text-secondary-foreground font-bold">
-                SCS
-              </div>
+              {logoUrl ? (
+                <img 
+                  src={logoUrl} 
+                  alt="Sindhi Cultural Society Logo" 
+                  className="w-10 h-10 object-contain"
+                />
+              ) : (
+                <div className="w-10 h-10 bg-secondary-foreground/10 rounded-full flex items-center justify-center text-secondary-foreground font-bold">
+                  SCS
+                </div>
+              )}
               <div>
                 <h3 className="font-bold text-lg">{orgInfo.name}</h3>
                 <p className="text-sm opacity-80">Jodhpur, Rajasthan</p>

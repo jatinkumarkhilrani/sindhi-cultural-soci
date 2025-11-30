@@ -14,7 +14,7 @@ export default function MediaGallery({ videos, youtubeChannel, language }: Media
   const t = useTranslation(language)
   
   const getEmbedUrl = (videoId: string) => {
-    return `https://www.youtube.com/embed/${videoId}`
+    return `https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1`
   }
 
   return (
@@ -43,9 +43,11 @@ export default function MediaGallery({ videos, youtubeChannel, language }: Media
                     <iframe
                       src={getEmbedUrl(video.videoId)}
                       title={video.title}
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                       allowFullScreen
-                      className="w-full h-full"
+                      loading="lazy"
+                      className="w-full h-full border-0"
+                      referrerPolicy="strict-origin-when-cross-origin"
                     />
                   </div>
                   <CardContent className="p-4">

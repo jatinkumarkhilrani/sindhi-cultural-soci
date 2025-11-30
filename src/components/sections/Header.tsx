@@ -10,9 +10,10 @@ interface HeaderProps {
   language: Language
   onLanguageChange: (language: Language) => void
   facebookUrl?: string
+  logoUrl?: string
 }
 
-export default function Header({ onAdminClick, language, onLanguageChange, facebookUrl }: HeaderProps) {
+export default function Header({ onAdminClick, language, onLanguageChange, facebookUrl, logoUrl }: HeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const t = useTranslation(language)
@@ -55,9 +56,17 @@ export default function Header({ onAdminClick, language, onLanguageChange, faceb
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             className="flex items-center gap-3 hover:opacity-80 transition-opacity"
           >
-            <div className="w-10 h-10 md:w-12 md:h-12 bg-primary rounded-full flex items-center justify-center text-primary-foreground font-bold text-lg md:text-xl">
-              SCS
-            </div>
+            {logoUrl ? (
+              <img 
+                src={logoUrl} 
+                alt="Sindhi Cultural Society Logo" 
+                className="w-10 h-10 md:w-12 md:h-12 object-contain"
+              />
+            ) : (
+              <div className="w-10 h-10 md:w-12 md:h-12 bg-primary rounded-full flex items-center justify-center text-primary-foreground font-bold text-lg md:text-xl">
+                SCS
+              </div>
+            )}
             <div className="flex flex-col">
               <span className="text-lg md:text-xl font-bold leading-tight">Sindhi Cultural Society</span>
               <span className="text-xs md:text-sm text-muted-foreground">Jodhpur, Rajasthan</span>
