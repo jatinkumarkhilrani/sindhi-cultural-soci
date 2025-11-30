@@ -4,6 +4,7 @@ import { List, X, Gear, FacebookLogo } from '@phosphor-icons/react'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 import LanguageSelector from '@/components/LanguageSelector'
 import { Language, useTranslation } from '@/lib/i18n'
+import logoImage from '@/assets/images/Logo_17_171.jpg'
 
 interface HeaderProps {
   onAdminClick: () => void
@@ -56,17 +57,11 @@ export default function Header({ onAdminClick, language, onLanguageChange, faceb
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             className="flex items-center gap-3 hover:opacity-80 transition-opacity"
           >
-            {logoUrl ? (
-              <img 
-                src={logoUrl} 
-                alt="Sindhi Cultural Society Logo" 
-                className="w-10 h-10 md:w-12 md:h-12 object-contain"
-              />
-            ) : (
-              <div className="w-10 h-10 md:w-12 md:h-12 bg-primary rounded-full flex items-center justify-center text-primary-foreground font-bold text-lg md:text-xl">
-                SCS
-              </div>
-            )}
+            <img 
+              src={logoUrl || logoImage} 
+              alt="Sindhi Cultural Society Logo" 
+              className="w-10 h-10 md:w-12 md:h-12 object-contain rounded-md"
+            />
             <div className="flex flex-col">
               <span className="text-lg md:text-xl font-bold leading-tight">Sindhi Cultural Society</span>
               <span className="text-xs md:text-sm text-muted-foreground">Jodhpur, Rajasthan</span>

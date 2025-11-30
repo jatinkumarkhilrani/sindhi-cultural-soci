@@ -2,6 +2,7 @@ import { Separator } from '@/components/ui/separator'
 import { YoutubeLogo, Envelope, Phone, FacebookLogo } from '@phosphor-icons/react'
 import { OrganizationInfo } from '@/lib/types'
 import { Language, useTranslation } from '@/lib/i18n'
+import logoImage from '@/assets/images/Logo_17_171.jpg'
 
 interface FooterProps {
   orgInfo: OrganizationInfo
@@ -19,17 +20,11 @@ export default function Footer({ orgInfo, language, facebookUrl, logoUrl }: Foot
         <div className="grid md:grid-cols-3 gap-8 mb-8">
           <div>
             <div className="flex items-center gap-3 mb-4">
-              {logoUrl ? (
-                <img 
-                  src={logoUrl} 
-                  alt="Sindhi Cultural Society Logo" 
-                  className="w-10 h-10 object-contain"
-                />
-              ) : (
-                <div className="w-10 h-10 bg-secondary-foreground/10 rounded-full flex items-center justify-center text-secondary-foreground font-bold">
-                  SCS
-                </div>
-              )}
+              <img 
+                src={logoUrl || logoImage} 
+                alt="Sindhi Cultural Society Logo" 
+                className="w-10 h-10 object-contain rounded-md"
+              />
               <div>
                 <h3 className="font-bold text-lg">{orgInfo.name}</h3>
                 <p className="text-sm opacity-80">Jodhpur, Rajasthan</p>
